@@ -28,12 +28,12 @@ jobs:
         aws s3 sync ./html/ s3://bipa17-std09-cicd-925047940866-ca-central-1-website/ --delete
         
         aws ssm send-command \
-          -- instance-ids "i-07ffa4cd292129532" \
-          -- document-name "AWS-RunShellScript" \
-          -- parameters "commands=[
+          --instance-ids "i-07ffa4cd292129532" \
+          --document-name "AWS-RunShellScript" \
+          --parameters "commands=[
           \"sudo aws s3 sync s3://bipa17-std09-cicd-925047940866-ca-central-1-website/ /usr/share/nginx/html/ --delete\",
           \"sudo chown -R ec2-user:nginx /usr/share/nginx/html\",
           \"sudo systemctl reload nginx\"
-          ]"
-          -- region ${{secrets.AWS_REGION}}
-          -- comment "Deploying SSM"
+          ]" \
+          --region ${{secrets.AWS_REGION}}
+          --comment "Deploying SSM"
