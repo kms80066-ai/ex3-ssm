@@ -35,5 +35,5 @@ jobs:
           \"sudo chown -R ec2-user:nginx /usr/share/nginx/html\",
           \"sudo systemctl reload nginx\"
           ]" \
-          --region ${{secrets.AWS_REGION}}
+          --region ${{secrets.AWS_REGION}} \
           --comment "Deploying SSM"
